@@ -15,11 +15,11 @@ TCP-сервер реализация: [ссылка](https://github.com/mamkad/
 
 Запуск клиента либо сервера осуществляется в main.c с помощью специальных флагов. main.c: [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/main.c)
 
-в папке file находятся функции для чтения/записи в текстовый файл: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/file)
+В папке file находятся функции для чтения/записи в текстовый файл: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/file)
 
-в папке address находится функция для получения sockaddr, IPv4 или IPv6: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/address)
+В папке address находится функция для получения sockaddr, IPv4 или IPv6: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/address)
 
-максимальный размер буфера и пути для file и address в geninfo.h [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/geninfo.h)
+Максимальный размер буфера и пути для file и address в geninfo.h [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/geninfo.h)
 
 **Сборка**
 
@@ -27,7 +27,7 @@ TCP-сервер реализация: [ссылка](https://github.com/mamkad/
 
 **Не составные части программы**
 
-в папке util содержаться две небольшие программы:
+В папке util содержатся две небольшие программы:
 
 myhost.c: [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/util/myhost.c) - используется, чтобы узнать текущее имя хоста
 
@@ -35,14 +35,14 @@ throw_sig.c: [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/ut
 
 **Дполнительная информация**
 
-при запуске сервер становится демоном, поэтому он не сможет использовать потоки ввода/вывода, чтобы сервер выводил сообщения во время работы, достаточно закомментировать следущие строки в tcp_server.с
+При запуске сервер становится демоном, поэтому он не сможет использовать потоки ввода/вывода, чтобы сервер выводил сообщения во время работы, достаточно закомментировать следущие строки в tcp_server.с
 ```
 //закрываем стандартные потоки ввода, вывода, вывода ошибок
 fclose(stdin);
 fclose(stdout);
 fclose(stderr);
 ```
-также сервер переходит в корневую директорию, если это не нужно, то надо закомментировать следующую строку в tcp_server.с
+Также сервер переходит в корневую директорию, если это не нужно, то надо закомментировать следующую строку в tcp_server.с
 ```
 chdir("/");
 ```
@@ -51,7 +51,7 @@ chdir("/");
 
 `./app -s порт backlog имя_файла_для_сохранения_полученных_данных.txt`
 
-пример
+Пример:
 
 `./app -s 4545 10 ~/data/out.txt`
 
@@ -59,6 +59,6 @@ chdir("/");
 
 `./app -c имя_хоста порт имя_файла_откуда_берётся_содержимое_для_отправки.txt`
 
-пример
+Пример:
 
 `./app -c Opres 4545 ~/data/in.txt`
