@@ -2,7 +2,8 @@
 ** tcp_server.c -- сервер потокового сокета TCP
 */
 
-#include "../geninfo.h"
+#include "../address/address.h"
+#include "../file/filerw.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,6 +18,8 @@
 #include <sys/wait.h>
 #include <signal.h>
 
+#define FILELENGTHSIZE 17
+
 // Функция для обработки сигналов SIGTERM и SIGHUP
 static void signalof_exit(int signal)
 {
@@ -30,6 +33,35 @@ static void signalof_exit(int signal)
 static void sigchld_handler(int signal)
 {
 	while(waitpid(-1, NULL, WNOHANG) > 0);
+}
+
+// Функция для получения данных от клиента
+static int recv_spec(int soc_fd, char** buff)
+{
+	char size_number[FILELENGTHSIZE];
+    size_number[0] = '\0';
+    
+	if(recv(soc_fd, size_number, FILELENGTHSIZE, 0) == -1) {
+		perror("recv1");
+		return -1;	
+	}
+	
+	int size = atoi(size_number);
+	if (!size) {
+		perror("wrong convertation");
+	}
+	
+	*buff = (char*) malloc(sizeof(char) * (size + 1));
+	if (buff == NULL) {
+    	return -1;	
+    }  
+	
+	if(recv(soc_fd, *buff, size, 0) == -1) {
+		perror("recv2");
+		return -1;	
+	}
+	
+	return size;
 }
 
 //tcp сервер
@@ -106,7 +138,6 @@ static int tcp_server(char const* port, int backlog, char const* file_name_out)
 	fclose(stderr);
 
 	int numbytes;		      // кол-во принятых байтов
-	char buf[MAXDATASIZE];    // буфер для полученных данных
 	socklen_t sin_size;       // содержит размер struct sockaddr_storage до того как её адрес будет передан accept()
 	char s[INET6_ADDRSTRLEN]; // адресс входящего подключения подключения
 	
@@ -130,23 +161,23 @@ static int tcp_server(char const* port, int backlog, char const* file_name_out)
 		// он лишь завершит процесс для данного подключения и будет обрабатывать следущие
 		if (!fork()) {
 			close(sockfd); // его слушать не нужно
-			// обнуляем буфер
 			// получаем данные от клиента
 			// проверяем, чтобы чтение прошло успешно
-			memset(buf, 0, MAXDATASIZE);
-			if ((numbytes = recv(new_fd, buf, MAXDATASIZE - 1, 0)) == -1) {
-				perror("recv");
+			char *buf; // буфер для полученных данных
+			if((numbytes = recv_spec(new_fd, &buf)) == -1) {
 				exit(1);
 			}
 			// сохраняем полученные данные в файл
 			// проверяем, что запись в файл прошла успешно
 			buf[numbytes] = '\0';
 			if(save_file(file_name_out, buf, numbytes) == -1) {
+				free(buf);
 				perror("file");
 				exit(1);
 			}
 			//закрываем соект
 			//завершаем процесс
+			free(buf);
 			close(new_fd);
 			exit(0);
 		}
