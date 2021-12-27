@@ -15,9 +15,9 @@ TCP-сервер реализация: [ссылка](https://github.com/mamkad/
 
 Запуск клиента либо сервера осуществляется в main.c с помощью специальных флагов. main.c: [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/main.c)
 
-в папке file находятся фукнции для чтения/записи в текстовый файл: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/file)
+в папке file находятся функции для чтения/записи в текстовый файл: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/file)
 
-в папке address находится фукнция для получения sockaddr, IPv4 или IPv6: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/address)
+в папке address находится функции для получения sockaddr, IPv4 или IPv6: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/address)
 
 максимальный размер буфера и пути для file и address в geninfo.h [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/geninfo.h)
 
