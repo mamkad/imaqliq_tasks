@@ -28,9 +28,10 @@ TCP-сервер реализация: [ссылка](https://github.com/mamkad/
 **Несоставные части программы**
 
 в папке util содержаться две небольшие программы:
-myhost.c [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/util/myhost.c) - используется, чтобы узнать текущее имя хоста
 
-throw_sig.c [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/util/throw_sig.c) - используется, чтобы посылать сигналы нужному процессу по pid (для тестирования завершения работы демона)
+myhost.c: [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/util/myhost.c) - используется, чтобы узнать текущее имя хоста
+
+throw_sig.c: [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/util/throw_sig.c) - используется, чтобы посылать сигналы нужному процессу по pid (для тестирования завершения работы демона)
 
 ## Создание клиента/сервера
 Чтобы создать сервер необохдимо при запуске из командной строки ввести следующие аргументы
