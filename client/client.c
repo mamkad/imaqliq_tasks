@@ -2,7 +2,8 @@
 ** client.c -- клиент потокового сокета
 */
 
-#include "../geninfo.h"
+#include "../address/address.h"
+#include "../file/filerw.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,17 +54,16 @@ void client(char const* host, char const* port, char const* file_name_in)
 	printf("client: connecting to %s\n", s);
 	freeaddrinfo(servinfo); // с этой структурой закончили
 
-	char buff[MAXDATASIZE];
-	memset(buff, 0, MAXDATASIZE);
-	
-	int nbytes = open_file(file_name_in, buff, MAXDATASIZE);
-	if (nbytes == -1) {
+	long int size;
+	char * buff = open_file(file_name_in, &size);
+	if (buff == NULL) {
 		perror("file");
 		exit(1);
 	}
 	
-	if (send(sockfd, buff, nbytes, 0) == -1)
+	if (send(sockfd, buff, size, 0) == -1)
 		perror("send");
 		
+	free(buff);
 	close(sockfd);
 }
