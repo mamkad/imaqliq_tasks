@@ -13,13 +13,13 @@ TCP-сервер реализация: [ссылка](https://github.com/mamkad/
 
 Клиент реализация: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/client)
 
-Запуск клиента либо сервера осуществляется в main.c с помощью специальных флагов: [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/main.c)
+Запуск клиента либо сервера осуществляется в main.c с помощью специальных флагов. main.c: [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/main.c)
 
-в папке file находятся фукнции для чтения/записи в текстовый файл
+в папке file находятся фукнции для чтения/записи в текстовый файл: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/file)
 
-в папке address находится фукнция для получения sockaddr, IPv4 или IPv6
+в папке address находится фукнция для получения sockaddr, IPv4 или IPv6: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/address)
 
-максимальный размер буфера и пути для file и address в geninfo.h [](https://github.com/mamkad/imaqliq_tasks/blob/main/geninfo.h)
+максимальный размер буфера и пути для file и address в geninfo.h [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/geninfo.h)
 
 **Сборка**
 
@@ -29,6 +29,7 @@ TCP-сервер реализация: [ссылка](https://github.com/mamkad/
 
 в папке util содержаться две небольшие программы:
 myhost.c [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/util/myhost.c) - используется, чтобы узнать текущее имя хоста
+
 throw_sig.c [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/util/throw_sig.c) - используется, чтобы посылать сигналы нужному процессу по pid (для тестирования завершения работы демона)
 
 ## Создание клиента/сервера
