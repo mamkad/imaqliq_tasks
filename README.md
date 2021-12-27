@@ -7,20 +7,25 @@
 Клиент должен передать содержимое текстового файла через TCP. 
 Сервер должен принять и сохранить в файл.* 
 ## Решение
-Составные части программы
+**Составные части программы**
 
 TCP-сервер реализация: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/tcp_server)
+
 Клиент реализация: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/client)
+
 Запуск клиента либо сервера осуществляется в main.c с помощью специальных флагов: [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/main.c)
+
 в папке file находятся фукнции для чтения/записи в текстовый файл
+
 в папке address находится фукнция для получения sockaddr, IPv4 или IPv6
+
 максимальный размер буфера и пути для file и address в geninfo.h [](https://github.com/mamkad/imaqliq_tasks/blob/main/geninfo.h)
 
-Сборка 
+**Сборка**
 
 Для компиляции достаточно выполнить make-файл, исполняемый файл будет создан в папке bin. 
 
-Несоставные части программы
+**Несоставные части программы**
 
 в папке util содержаться две небольшие программы:
 myhost.c [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/util/myhost.c) - используется, чтобы узнать текущее имя хоста
