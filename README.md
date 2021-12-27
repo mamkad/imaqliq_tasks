@@ -19,8 +19,6 @@ TCP-сервер реализация: [ссылка](https://github.com/mamkad/
 
 В папке address находится функция для получения sockaddr, IPv4 или IPv6: [ссылка](https://github.com/mamkad/imaqliq_tasks/tree/main/address)
 
-Максимальный размер буфера и пути для file и address в geninfo.h [ссылка](https://github.com/mamkad/imaqliq_tasks/blob/main/geninfo.h)
-
 **Сборка**
 
 Для компиляции достаточно выполнить make-файл, исполняемый файл будет создан в папке bin. 
